@@ -1,0 +1,2109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>SmartSched</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+</head>
+
+
+<body>
+
+<div class="app-layout">
+
+    <!-- ========================================
+         SIDEBAR
+    ========================================= -->
+
+    <aside class="sidebar">
+
+        <div>
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    S
+                </div>
+
+                <div>
+                    <div class="brand-name">
+                        SmartSched
+                    </div>
+
+                    <div class="brand-subtitle">
+                        Academic Planner
+                    </div>
+                </div>
+
+            </div>
+
+
+            <nav class="navigation">
+
+                <button
+                    class="nav-item active"
+                    onclick="showPage('dashboard', this)"
+                >
+                    <span>⌂</span>
+                    Dashboard
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showPage('add-task', this)"
+                >
+                    <span>＋</span>
+                    Add Task
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showPage('tasks', this)"
+                >
+                    <span>☑</span>
+                    My Tasks
+                </button>
+
+                <button
+                    class="nav-item"
+                    onclick="showPage('schedule', this)"
+                >
+                    <span>▦</span>
+                    Smart Schedule
+                </button>
+
+            </nav>
+
+        </div>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="ai-card">
+
+                <div class="ai-icon">
+                    ✦
+                </div>
+
+                <div>
+                    <strong>ML Powered</strong>
+
+                    <p>
+                        Productivity-based academic scheduling
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ========================================
+         MAIN
+    ========================================= -->
+
+    <main class="main-content">
+
+
+        <!-- ====================================
+             TOP BAR
+        ===================================== -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1 id="page-title">
+                    Dashboard
+                </h1>
+
+                <p id="page-description">
+                    Plan smarter. Study better.
+                </p>
+
+            </div>
+
+
+            <div class="top-actions">
+
+                <div class="today-box">
+
+                    <span class="small-label">
+                        TODAY
+                    </span>
+
+                    <strong id="today-date">
+                        --
+                    </strong>
+
+                </div>
+
+                <button
+                    class="primary-button"
+                    onclick="openAddTask()"
+                >
+                    + Add Task
+                </button>
+
+            </div>
+
+        </header>
+
+
+        <!-- ====================================
+             DASHBOARD PAGE
+        ===================================== -->
+
+        <section
+            id="dashboard"
+            class="page active-page"
+        >
+
+            <div class="welcome-card">
+
+                <div>
+
+                    <span class="eyebrow">
+                        SMART ACADEMIC PLANNING
+                    </span>
+
+                    <h2>
+                        Your week, intelligently planned.
+                    </h2>
+
+                    <p>
+                        SmartSched combines deadlines,
+                        workload and machine-learning
+                        productivity predictions to find
+                        better times for your academic work.
+                    </p>
+
+                </div>
+
+                <div class="welcome-symbol">
+                    ✦
+                </div>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        ☑
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Active Tasks
+                        </span>
+
+                        <h3 id="task-count">
+                            0
+                        </h3>
+
+                        <p>
+                            Academic tasks
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon violet">
+                        ◷
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Remaining Work
+                        </span>
+
+                        <h3 id="remaining-hours">
+                            0h
+                        </h3>
+
+                        <p>
+                            Total workload
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        ▦
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Scheduled Sessions
+                        </span>
+
+                        <h3 id="session-count">
+                            0
+                        </h3>
+
+                        <p>
+                            Planned sessions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        ↗
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Productivity
+                        </span>
+
+                        <h3 id="productivity-score">
+                            —
+                        </h3>
+
+                        <p>
+                            ML prediction
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="dashboard-grid">
+
+                <div class="panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Upcoming Tasks</h3>
+
+                            <p>
+                                Your nearest academic deadlines
+                            </p>
+                        </div>
+
+                        <button
+                            class="text-button"
+                            onclick="navigateTo('tasks')"
+                        >
+                            View all
+                        </button>
+
+                    </div>
+
+
+                    <div id="dashboard-tasks">
+
+                        <div class="empty-state">
+
+                            <div class="empty-icon">
+                                ☑
+                            </div>
+
+                            <h4>No tasks yet</h4>
+
+                            <p>
+                                Add your first academic task
+                                to get started.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="panel focus-panel">
+
+                    <div class="panel-header">
+
+                        <div>
+                            <h3>Smart Planning</h3>
+
+                            <p>
+                                ML-assisted scheduling
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <div class="focus-content">
+
+                        <div class="focus-circle">
+                            ✦
+                        </div>
+
+                        <h3>
+                            Ready to build your plan?
+                        </h3>
+
+                        <p>
+                            Add your deadlines and SmartSched
+                            will find productive study windows.
+                        </p>
+
+                        <button
+                            class="secondary-button"
+                            onclick="navigateTo('schedule')"
+                        >
+                            Generate Schedule
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================
+             ADD TASK
+        ===================================== -->
+
+        <section
+            id="add-task"
+            class="page"
+        >
+
+            <div class="content-heading">
+
+                <span class="eyebrow">
+                    NEW ACADEMIC TASK
+                </span>
+
+                <h2>
+                    What do you need to work on?
+                </h2>
+
+                <p>
+                    Add the details below. SmartSched will
+                    use them when generating your schedule.
+                </p>
+
+            </div>
+
+
+            <div class="form-card">
+
+                <form id="task-form">
+
+                    <div class="form-section">
+
+                        <h3>
+                            Task Information
+                        </h3>
+
+                        <p>
+                            Basic information about your work.
+                        </p>
+
+
+                        <div class="form-grid">
+
+                            <div class="field full">
+
+                                <label>
+                                    Task Name
+                                </label>
+
+                                <input
+                                    id="task-name"
+                                    type="text"
+                                    placeholder="e.g. Machine Learning Assignment"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Subject
+                                </label>
+
+                                <input
+                                    id="subject"
+                                    type="text"
+                                    placeholder="e.g. Machine Learning"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Task Category
+                                </label>
+
+                                <select id="category">
+
+                                    <option>Assignment</option>
+                                    <option>Exam Study</option>
+                                    <option>Practical</option>
+                                    <option>Project</option>
+                                    <option>Notes</option>
+                                    <option>Revision</option>
+                                    <option>Quiz Study</option>
+                                    <option>Presentation</option>
+                                    <option>Submission</option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-divider"></div>
+
+
+                    <div class="form-section">
+
+                        <h3>
+                            Deadline & Workload
+                        </h3>
+
+                        <p>
+                            Tell SmartSched how much time you
+                            have and how much work is required.
+                        </p>
+
+
+                        <div class="form-grid three">
+
+                            <div class="field">
+
+                                <label>
+                                    Deadline Date
+                                </label>
+
+                                <input
+                                    id="deadline-date"
+                                    type="date"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Deadline Time
+                                </label>
+
+                                <input
+                                    id="deadline-time"
+                                    type="time"
+                                    value="23:59"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Duration
+                                </label>
+
+                                <div class="input-unit">
+
+                                    <input
+                                        id="duration"
+                                        type="number"
+                                        min="30"
+                                        step="30"
+                                        value="120"
+                                        required
+                                    >
+
+                                    <span>
+                                        min
+                                    </span>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-divider"></div>
+
+
+                    <div class="form-section">
+
+                        <h3>
+                            Task Priority
+                        </h3>
+
+                        <p>
+                            These factors help determine urgency.
+                        </p>
+
+
+                        <div class="form-grid">
+
+                            <div class="field">
+
+                                <label>
+                                    Difficulty
+                                </label>
+
+                                <select id="difficulty">
+
+                                    <option>Easy</option>
+                                    <option selected>Medium</option>
+                                    <option>Hard</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field">
+
+                                <label>
+                                    Importance
+                                </label>
+
+                                <select id="importance">
+
+                                    <option>Low</option>
+                                    <option selected>Medium</option>
+                                    <option>High</option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="field full">
+
+                                <div class="range-label">
+
+                                    <label>
+                                        Current Progress
+                                    </label>
+
+                                    <strong id="progress-value">
+                                        0%
+                                    </strong>
+
+                                </div>
+
+                                <input
+                                    id="progress"
+                                    type="range"
+                                    min="0"
+                                    max="100"
+                                    value="0"
+                                    step="5"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-actions">
+
+                        <button
+                            type="button"
+                            class="cancel-button"
+                            onclick="navigateTo('dashboard')"
+                        >
+                            Cancel
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="primary-button large"
+                        >
+                            + Add Academic Task
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </section>
+
+
+        <!-- ====================================
+             TASKS PAGE
+        ===================================== -->
+
+        <section
+            id="tasks"
+            class="page"
+        >
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <span class="eyebrow">
+                        TASK MANAGEMENT
+                    </span>
+
+                    <h2>
+                        My Academic Tasks
+                    </h2>
+
+                    <p>
+                        Review the tasks SmartSched will use
+                        when building your plan.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="primary-button"
+                    onclick="openAddTask()"
+                >
+                    + Add Task
+                </button>
+
+            </div>
+
+
+            <div
+                id="task-list"
+                class="task-list"
+            ></div>
+
+        </section>
+
+
+        <!-- ====================================
+             SCHEDULE
+        ===================================== -->
+
+        <section
+            id="schedule"
+            class="page"
+        >
+
+            <div class="section-title-row">
+
+                <div>
+
+                    <span class="eyebrow">
+                        AI-ASSISTED PLAN
+                    </span>
+
+                    <h2>
+                        Smart Schedule
+                    </h2>
+
+                    <p>
+                        Your tasks arranged around deadlines,
+                        availability and predicted productivity.
+                    </p>
+
+                </div>
+
+
+                <button
+                    id="generate-button"
+                    class="primary-button"
+                    onclick="generateSchedule()"
+                >
+                    ✦ Generate Schedule
+                </button>
+
+            </div>
+
+
+            <div
+                id="schedule-summary"
+                class="stats-grid schedule-stats"
+            ></div>
+
+
+            <div
+                id="schedule-content"
+                class="schedule-container"
+            >
+
+                <div class="large-empty-state">
+
+                    <div class="empty-schedule-icon">
+                        ✦
+                    </div>
+
+                    <h3>
+                        Your schedule is waiting
+                    </h3>
+
+                    <p>
+                        Add your academic tasks, then let
+                        SmartSched create an intelligent plan.
+                    </p>
+
+                    <button
+                        class="primary-button"
+                        onclick="openAddTask()"
+                    >
+                        Add Your First Task
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- ========================================
+     TOAST
+========================================= -->
+
+<div
+    id="toast"
+    class="toast"
+></div>
+
+
+<script>
+
+    // ==========================================
+    // STATE
+    // ==========================================
+
+    let tasks = [];
+    let schedule = [];
+
+
+    // ==========================================
+    // DATE
+    // ==========================================
+
+    const today = new Date();
+
+    document.getElementById("today-date").textContent =
+        today.toLocaleDateString(
+            "en-GB",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+
+    // Default deadline = tomorrow
+
+    const tomorrow = new Date();
+
+    tomorrow.setDate(
+        tomorrow.getDate() + 1
+    );
+
+    document.getElementById(
+        "deadline-date"
+    ).value =
+        tomorrow.toISOString().split("T")[0];
+
+
+    // ==========================================
+    // NAVIGATION
+    // ==========================================
+
+    const pageInformation = {
+
+        "dashboard": {
+            title: "Dashboard",
+            description:
+                "Plan smarter. Study better."
+        },
+
+        "add-task": {
+            title: "Add Task",
+            description:
+                "Create a new academic task."
+        },
+
+        "tasks": {
+            title: "My Tasks",
+            description:
+                "Manage your academic workload."
+        },
+
+        "schedule": {
+            title: "Smart Schedule",
+            description:
+                "Your ML-powered academic plan."
+        }
+    };
+
+
+    function showPage(
+        pageId,
+        clickedButton = null
+    ) {
+
+        document
+            .querySelectorAll(".page")
+            .forEach(page => {
+
+                page.classList.remove(
+                    "active-page"
+                );
+
+            });
+
+
+        document
+            .getElementById(pageId)
+            .classList.add(
+                "active-page"
+            );
+
+
+        document
+            .querySelectorAll(".nav-item")
+            .forEach(item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            });
+
+
+        if (clickedButton) {
+
+            clickedButton.classList.add(
+                "active"
+            );
+
+        }
+
+
+        document.getElementById(
+            "page-title"
+        ).textContent =
+            pageInformation[pageId].title;
+
+
+        document.getElementById(
+            "page-description"
+        ).textContent =
+            pageInformation[pageId].description;
+
+
+        if (pageId === "tasks") {
+            renderTasks();
+        }
+
+
+        if (pageId === "dashboard") {
+            renderDashboard();
+        }
+
+    }
+
+
+    function navigateTo(pageId) {
+
+        const buttons =
+            document.querySelectorAll(
+                ".nav-item"
+            );
+
+
+        const mapping = {
+            "dashboard": 0,
+            "add-task": 1,
+            "tasks": 2,
+            "schedule": 3
+        };
+
+
+        showPage(
+            pageId,
+            buttons[mapping[pageId]]
+        );
+
+    }
+
+
+    function openAddTask() {
+
+        navigateTo(
+            "add-task"
+        );
+
+    }
+
+
+    // ==========================================
+    // PROGRESS
+    // ==========================================
+
+    document
+        .getElementById("progress")
+        .addEventListener(
+            "input",
+            function () {
+
+                document.getElementById(
+                    "progress-value"
+                ).textContent =
+                    this.value + "%";
+
+            }
+        );
+
+
+    // ==========================================
+    // ADD TASK
+    // ==========================================
+
+    document
+        .getElementById("task-form")
+        .addEventListener(
+            "submit",
+            async function (event) {
+
+                event.preventDefault();
+
+
+                const task = {
+
+                    name:
+                        document.getElementById(
+                            "task-name"
+                        ).value.trim(),
+
+                    subject:
+                        document.getElementById(
+                            "subject"
+                        ).value.trim(),
+
+                    task_category:
+                        document.getElementById(
+                            "category"
+                        ).value,
+
+                    deadline_date:
+                        document.getElementById(
+                            "deadline-date"
+                        ).value,
+
+                    deadline_time:
+                        document.getElementById(
+                            "deadline-time"
+                        ).value,
+
+                    duration:
+                        Number(
+                            document.getElementById(
+                                "duration"
+                            ).value
+                        ),
+
+                    difficulty:
+                        document.getElementById(
+                            "difficulty"
+                        ).value,
+
+                    importance:
+                        document.getElementById(
+                            "importance"
+                        ).value,
+
+                    progress:
+                        Number(
+                            document.getElementById(
+                                "progress"
+                            ).value
+                        )
+                };
+
+
+                const response = await fetch(
+                    "/api/tasks",
+                    {
+                        method: "POST",
+
+                        headers: {
+                            "Content-Type":
+                                "application/json"
+                        },
+
+                        body:
+                            JSON.stringify(task)
+                    }
+                );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    showToast(
+                        data.error ||
+                        "Unable to add task.",
+                        "error"
+                    );
+
+                    return;
+                }
+
+
+                tasks = data.tasks;
+
+                this.reset();
+
+                document.getElementById(
+                    "duration"
+                ).value = 120;
+
+                document.getElementById(
+                    "deadline-time"
+                ).value = "23:59";
+
+                document.getElementById(
+                    "progress-value"
+                ).textContent = "0%";
+
+
+                showToast(
+                    "Task added successfully.",
+                    "success"
+                );
+
+
+                renderDashboard();
+
+                navigateTo(
+                    "tasks"
+                );
+
+            }
+        );
+
+
+    // ==========================================
+    // LOAD TASKS
+    // ==========================================
+
+    async function loadTasks() {
+
+        const response =
+            await fetch("/api/tasks");
+
+        const data =
+            await response.json();
+
+        tasks = data.tasks || [];
+
+        renderDashboard();
+        renderTasks();
+
+    }
+
+
+    // ==========================================
+    // DELETE TASK
+    // ==========================================
+
+    async function deleteTask(index) {
+
+        const response =
+            await fetch(
+                "/api/tasks/" + index,
+                {
+                    method: "DELETE"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            showToast(
+                "Unable to remove task.",
+                "error"
+            );
+
+            return;
+        }
+
+
+        tasks = data.tasks;
+
+        schedule = [];
+
+        renderTasks();
+        renderDashboard();
+
+        showToast(
+            "Task removed.",
+            "success"
+        );
+
+    }
+
+
+    // ==========================================
+    // DASHBOARD
+    // ==========================================
+
+    function renderDashboard() {
+
+        document.getElementById(
+            "task-count"
+        ).textContent = tasks.length;
+
+
+        const totalMinutes =
+            tasks.reduce(
+                (sum, task) => {
+
+                    const remaining =
+                        task.duration *
+                        (
+                            (100 - task.progress)
+                            / 100
+                        );
+
+                    return sum + remaining;
+
+                },
+                0
+            );
+
+
+        document.getElementById(
+            "remaining-hours"
+        ).textContent =
+            (totalMinutes / 60)
+                .toFixed(1) + "h";
+
+
+        document.getElementById(
+            "session-count"
+        ).textContent =
+            schedule.length;
+
+
+        if (schedule.length) {
+
+            const average =
+                schedule.reduce(
+                    (sum, item) =>
+                        sum +
+                        item.productivity,
+                    0
+                )
+                / schedule.length;
+
+
+            document.getElementById(
+                "productivity-score"
+            ).textContent =
+                average.toFixed(1)
+                + "/10";
+
+        }
+        else {
+
+            document.getElementById(
+                "productivity-score"
+            ).textContent = "—";
+
+        }
+
+
+        const container =
+            document.getElementById(
+                "dashboard-tasks"
+            );
+
+
+        if (!tasks.length) {
+
+            container.innerHTML = `
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ☑
+                    </div>
+
+                    <h4>No tasks yet</h4>
+
+                    <p>
+                        Add your first academic task
+                        to get started.
+                    </p>
+
+                </div>
+            `;
+
+            return;
+        }
+
+
+        const upcoming = [...tasks]
+            .sort(
+                (a, b) =>
+                    new Date(a.deadline)
+                    -
+                    new Date(b.deadline)
+            )
+            .slice(0, 4);
+
+
+        container.innerHTML =
+            upcoming.map(task => `
+
+                <div class="mini-task">
+
+                    <div class="task-dot"></div>
+
+                    <div class="mini-task-info">
+
+                        <strong>
+                            ${escapeHtml(task.name)}
+                        </strong>
+
+                        <span>
+                            ${escapeHtml(task.subject)}
+                        </span>
+
+                    </div>
+
+                    <div class="mini-task-date">
+
+                        ${formatDeadline(
+                            task.deadline
+                        )}
+
+                    </div>
+
+                </div>
+
+            `).join("");
+
+    }
+
+
+    // ==========================================
+    // TASK LIST
+    // ==========================================
+
+    function renderTasks() {
+
+        const container =
+            document.getElementById(
+                "task-list"
+            );
+
+
+        if (!tasks.length) {
+
+            container.innerHTML = `
+
+                <div class="large-empty-state">
+
+                    <div class="empty-schedule-icon">
+                        ☑
+                    </div>
+
+                    <h3>
+                        No academic tasks
+                    </h3>
+
+                    <p>
+                        Start by adding an assignment,
+                        exam, practical or project.
+                    </p>
+
+                    <button
+                        class="primary-button"
+                        onclick="openAddTask()"
+                    >
+                        + Add Task
+                    </button>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        container.innerHTML =
+            tasks.map(
+                (task, index) => `
+
+                <div class="task-card">
+
+                    <div class="task-main">
+
+                        <div class="task-type-icon">
+                            ${getTaskIcon(
+                                task.task_category
+                            )}
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                ${escapeHtml(task.name)}
+                            </h3>
+
+                            <p>
+                                ${escapeHtml(task.subject)}
+                                •
+                                ${escapeHtml(
+                                    task.task_category
+                                )}
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="task-detail">
+
+                        <span>Deadline</span>
+
+                        <strong>
+                            ${formatDeadline(
+                                task.deadline
+                            )}
+                        </strong>
+
+                    </div>
+
+
+                    <div class="task-detail">
+
+                        <span>Duration</span>
+
+                        <strong>
+                            ${task.duration} min
+                        </strong>
+
+                    </div>
+
+
+                    <div class="task-detail">
+
+                        <span>Progress</span>
+
+                        <strong>
+                            ${task.progress}%
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="delete-button"
+                        onclick="deleteTask(${index})"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+            `).join("");
+
+    }
+
+
+    // ==========================================
+    // GENERATE SCHEDULE
+    // ==========================================
+
+    async function generateSchedule() {
+
+        if (!tasks.length) {
+
+            showToast(
+                "Add at least one task first.",
+                "error"
+            );
+
+            openAddTask();
+
+            return;
+        }
+
+
+        const button =
+            document.getElementById(
+                "generate-button"
+            );
+
+
+        button.disabled = true;
+
+        button.textContent =
+            "Generating...";
+
+
+        try {
+
+            const response =
+                await fetch(
+                    "/api/generate",
+                    {
+                        method: "POST"
+                    }
+                );
+
+
+            const data =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    data.error ||
+                    "Schedule generation failed."
+                );
+
+            }
+
+
+            schedule =
+                data.schedule || [];
+
+
+            renderSchedule(
+                schedule,
+                data.unscheduled || []
+            );
+
+
+            renderDashboard();
+
+
+            showToast(
+                "Smart schedule generated.",
+                "success"
+            );
+
+        }
+        catch (error) {
+
+            showToast(
+                error.message,
+                "error"
+            );
+
+        }
+        finally {
+
+            button.disabled = false;
+
+            button.textContent =
+                "✦ Generate Schedule";
+
+        }
+
+    }
+
+
+    // ==========================================
+    // SCHEDULE UI
+    // ==========================================
+
+    function renderSchedule(
+        items,
+        unscheduled
+    ) {
+
+        const summary =
+            document.getElementById(
+                "schedule-summary"
+            );
+
+
+        const content =
+            document.getElementById(
+                "schedule-content"
+            );
+
+
+        if (!items.length) {
+
+            summary.innerHTML = "";
+
+            content.innerHTML = `
+
+                <div class="large-empty-state">
+
+                    <div class="empty-schedule-icon">
+                        !
+                    </div>
+
+                    <h3>
+                        No sessions could be scheduled
+                    </h3>
+
+                    <p>
+                        Check your deadlines and
+                        available study time.
+                    </p>
+
+                </div>
+
+            `;
+
+            return;
+        }
+
+
+        const totalMinutes =
+            items.reduce(
+                (sum, item) =>
+                    sum + item.duration,
+                0
+            );
+
+
+        const average =
+            items.reduce(
+                (sum, item) =>
+                    sum + item.productivity,
+                0
+            ) / items.length;
+
+
+        const critical =
+            items.filter(
+                item =>
+                    item.urgency_level
+                    === "CRITICAL"
+            ).length;
+
+
+        summary.innerHTML = `
+
+            ${summaryCard(
+                "Sessions",
+                items.length,
+                "Planned study blocks"
+            )}
+
+            ${summaryCard(
+                "Study Time",
+                (totalMinutes / 60)
+                    .toFixed(1) + "h",
+                "Total scheduled"
+            )}
+
+            ${summaryCard(
+                "Productivity",
+                average.toFixed(1) + "/10",
+                "Average ML score"
+            )}
+
+            ${summaryCard(
+                "Critical",
+                critical,
+                "Urgent sessions"
+            )}
+
+        `;
+
+
+        const grouped = {};
+
+
+        items.forEach(item => {
+
+            const day =
+                item.start.split("T")[0];
+
+            if (!grouped[day]) {
+                grouped[day] = [];
+            }
+
+            grouped[day].push(item);
+
+        });
+
+
+        let html = "";
+
+
+        Object.keys(grouped)
+            .sort()
+            .forEach(day => {
+
+                const dateObject =
+                    new Date(
+                        day + "T00:00:00"
+                    );
+
+
+                const dayName =
+                    dateObject.toLocaleDateString(
+                        "en-GB",
+                        {
+                            weekday: "long"
+                        }
+                    );
+
+
+                const displayDate =
+                    dateObject.toLocaleDateString(
+                        "en-GB",
+                        {
+                            day: "2-digit",
+                            month: "long"
+                        }
+                    );
+
+
+                html += `
+
+                    <div class="day-section">
+
+                        <div class="day-heading">
+
+                            <div>
+
+                                <span>
+                                    ${dayName}
+                                </span>
+
+                                <strong>
+                                    ${displayDate}
+                                </strong>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="timeline">
+
+                `;
+
+
+                grouped[day]
+                    .sort(
+                        (a, b) =>
+                            new Date(a.start)
+                            -
+                            new Date(b.start)
+                    )
+                    .forEach(item => {
+
+
+                        const start =
+                            formatTime(
+                                item.start
+                            );
+
+
+                        const end =
+                            formatTime(
+                                item.end
+                            );
+
+
+                        let session = "";
+
+
+                        if (
+                            item.total_sessions > 1
+                        ) {
+
+                            session =
+                                `Session
+                                ${item.session_number}/
+                                ${item.total_sessions}`;
+
+                        }
+
+
+                        html += `
+
+                            <div class="schedule-item">
+
+                                <div class="schedule-time">
+
+                                    <strong>
+                                        ${start}
+                                    </strong>
+
+                                    <span>
+                                        ${end}
+                                    </span>
+
+                                </div>
+
+
+                                <div class="timeline-line">
+
+                                    <div
+                                        class="timeline-dot"
+                                    ></div>
+
+                                </div>
+
+
+                                <div class="schedule-task-card">
+
+                                    <div>
+
+                                        <div
+                                            class="schedule-category"
+                                        >
+                                            ${escapeHtml(
+                                                item.category
+                                            )}
+                                        </div>
+
+                                        <h3>
+                                            ${escapeHtml(
+                                                item.name
+                                            )}
+                                        </h3>
+
+                                        <p>
+                                            ${escapeHtml(
+                                                item.subject
+                                            )}
+
+                                            ${
+                                                session
+                                                ?
+                                                " • " +
+                                                session
+                                                :
+                                                ""
+                                            }
+                                        </p>
+
+                                    </div>
+
+
+                                    <div
+                                        class="schedule-right"
+                                    >
+
+                                        <span
+                                            class="
+                                                urgency-badge
+                                                ${item.urgency_level
+                                                    .toLowerCase()}
+                                            "
+                                        >
+                                            ${item.urgency_level}
+                                        </span>
+
+                                        <div
+                                            class="productivity-score"
+                                        >
+                                            ✦
+                                            ${item.productivity
+                                                .toFixed(2)}
+                                            /10
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        `;
+
+                    });
+
+
+                html += `
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            });
+
+
+        if (unscheduled.length) {
+
+            html += `
+
+                <div class="warning-box">
+
+                    <strong>
+                        Some work could not be scheduled.
+                    </strong>
+
+                    <p>
+                        ${unscheduled.length}
+                        session(s) do not fit before
+                        their deadlines.
+                    </p>
+
+                </div>
+
+            `;
+
+        }
+
+
+        content.innerHTML = html;
+
+    }
+
+
+    // ==========================================
+    // HELPERS
+    // ==========================================
+
+    function summaryCard(
+        label,
+        value,
+        caption
+    ) {
+
+        return `
+
+            <div class="stat-card compact">
+
+                <div>
+
+                    <span>
+                        ${label}
+                    </span>
+
+                    <h3>
+                        ${value}
+                    </h3>
+
+                    <p>
+                        ${caption}
+                    </p>
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+
+    function getTaskIcon(category) {
+
+        const icons = {
+
+            "Assignment": "A",
+            "Exam Study": "E",
+            "Practical": "P",
+            "Project": "P",
+            "Notes": "N",
+            "Revision": "R",
+            "Quiz Study": "Q",
+            "Presentation": "S",
+            "Submission": "✓"
+
+        };
+
+
+        return icons[category] || "T";
+
+    }
+
+
+    function formatDeadline(value) {
+
+        const d =
+            new Date(value);
+
+
+        return d.toLocaleDateString(
+            "en-GB",
+            {
+                day: "2-digit",
+                month: "short"
+            }
+        )
+        +
+        " • "
+        +
+        d.toLocaleTimeString(
+            "en-GB",
+            {
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+        );
+
+    }
+
+
+    function formatTime(value) {
+
+        const d =
+            new Date(value);
+
+
+        return d.toLocaleTimeString(
+            "en-GB",
+            {
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false
+            }
+        );
+
+    }
+
+
+    function escapeHtml(value) {
+
+        const div =
+            document.createElement("div");
+
+        div.textContent =
+            value || "";
+
+        return div.innerHTML;
+
+    }
+
+
+    function showToast(
+        message,
+        type
+    ) {
+
+        const toast =
+            document.getElementById(
+                "toast"
+            );
+
+
+        toast.textContent =
+            message;
+
+
+        toast.className =
+            "toast show "
+            + type;
+
+
+        setTimeout(
+            () => {
+
+                toast.className =
+                    "toast";
+
+            },
+            3000
+        );
+
+    }
+
+
+    // ==========================================
+    // INITIAL LOAD
+    // ==========================================
+
+    loadTasks();
+
+</script>
+
+</body>
+
+</html>

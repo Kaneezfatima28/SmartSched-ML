@@ -1,0 +1,23 @@
+task_category,subject,day_of_week,start_hour,duration,difficulty,importance,hours_until_deadline,completed,productivity_score
+Assignment,Machine Learning,Monday,17,120,Hard,High,30,1,9
+Exam Study,Wireless Communication,Monday,7,60,Hard,High,96,1,9
+Practical,Web Development,Monday,19,90,Medium,High,48,1,8
+Notes,DBMS,Monday,21,60,Easy,Low,120,1,6
+Assignment,DBMS,Tuesday,18,90,Medium,High,24,1,8
+Exam Study,Machine Learning,Tuesday,7,90,Hard,High,72,1,9
+Practical,Wireless Communication,Tuesday,20,60,Medium,Medium,48,1,7
+Presentation,Web Development,Wednesday,17,120,Medium,High,30,1,8
+Exam Study,DBMS,Wednesday,6,60,Hard,High,48,1,8
+Assignment,Wireless Communication,Wednesday,21,120,Hard,High,12,0,4
+Project,Machine Learning,Thursday,17,120,Hard,High,72,1,9
+Viva,Web Development,Thursday,20,60,Medium,High,24,1,7
+Notes,Wireless Communication,Thursday,22,60,Easy,Low,96,0,4
+Quiz Study,DBMS,Friday,7,60,Medium,Medium,24,1,8
+Practical,Machine Learning,Friday,18,120,Hard,High,30,1,8
+Assignment,Web Development,Friday,21,90,Medium,Medium,48,1,6
+Exam Study,Wireless Communication,Saturday,8,120,Hard,High,48,1,9
+Project,Web Development,Saturday,11,180,Hard,High,96,1,8
+Notes,Machine Learning,Saturday,20,60,Easy,Low,120,1,6
+Exam Study,DBMS,Sunday,9,120,Medium,High,72,1,9
+Presentation,Machine Learning,Sunday,16,90,Medium,Medium,48,1,8
+Assignment,Wireless Communication,Sunday,22,120,Hard,High,10,0,3

@@ -1,0 +1,7 @@
+
+Pandas → dataset handling
+NumPy → numerical operations
+Scikit-learn → machine learning
+Matplotlib → graphs/model analysis
+Joblib → save our trained model
+Streamlit → final user interface
