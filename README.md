@@ -181,17 +181,17 @@ http://127.0.0.1:5000
 
 ## 📸 Screenshots
 
-### Dashboard
+### 🏠 SmartSched Dashboard
+![SmartSched Dashboard](screenshots/dashboard.png)
 
-Add your SmartSched dashboard screenshot here.
+### ➕ Add Academic Task
+![Add Academic Task](screenshots/add-task.png)
 
-### Add Academic Task
+### 📋 My Tasks
+![SmartSched My Tasks](screenshots/mytasks.png)
 
-Add your task-input screenshot here.
-
-### Generated Smart Schedule
-
-Add your final generated schedule screenshot here.
+### 🧠 ML-Generated Smart Schedule
+![SmartSched Smart Schedule](screenshots/smart-schedule.png)
 
 ---
 
